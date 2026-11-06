@@ -199,8 +199,8 @@
       <!-- Spelyta uppdelad i 2 kolumner: Vänster = Berättelse, Höger = Begreppsbank -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
         
-        <!-- Vänsterkolumn: Scenkort & Berättelse (ca 8 av 12 kolumner på större skärmar) -->
-        <div class="lg:col-span-8 bg-comicCard rounded-2xl shadow-sm border-2 border-comicBorder p-4 sm:p-5 flex flex-col justify-between min-h-[460px]">
+        <!-- Vänsterkolumn: Scenkort & Berättelse -->
+        <div class="lg:col-span-7 bg-comicCard rounded-2xl shadow-sm border-2 border-comicBorder p-4 sm:p-5 flex flex-col justify-between min-h-[460px]">
           <div>
             <div class="flex flex-col sm:flex-row gap-4 items-center mb-4 pb-3 border-b-2 border-comicBorder/30">
               <div id="sceneIconContainer" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-comicCardDark border-2 border-comicBorder flex items-center justify-center text-4xl flex-shrink-0 shadow-sm">
@@ -234,8 +234,8 @@
           </div>
         </div>
 
-        <!-- Högerkolumn: Begreppsbank i vertikal spalt (ca 4 av 12 kolumner) -->
-        <div class="lg:col-span-4 bg-comicCard rounded-2xl shadow-sm border-2 border-comicBorder p-4 flex flex-col">
+        <!-- Högerkolumn: Begreppsbank med 2 spalter -->
+        <div class="lg:col-span-5 bg-comicCard rounded-2xl shadow-sm border-2 border-comicBorder p-4 flex flex-col">
           <div class="flex items-center justify-between mb-3 pb-2 border-b-2 border-comicBorder/30">
             <div class="text-xs font-comic font-bold text-comicText uppercase tracking-wider flex items-center gap-1.5">
               <span>🔤 Begreppsbank</span>
@@ -246,8 +246,8 @@
           </div>
           <p class="text-[11px] text-stone-600 mb-2 italic">Klicka på ett begrepp för att placera det i den markerade rutan:</p>
 
-          <!-- Vertikal lista uppifrån och ner -->
-          <div id="wordBankContainer" class="flex flex-col gap-2 max-h-[480px] overflow-y-auto pr-1 custom-scrollbar"></div>
+          <!-- Två spalter i samma ruta för att slippa scrolla neråt -->
+          <div id="wordBankContainer" class="grid grid-cols-2 gap-2"></div>
         </div>
 
       </div>
@@ -314,12 +314,12 @@
     const STORAGE_KEY = "brott_till_straff_completed_scenarios";
     const CORRECT_CHAIN = ["Brottet", "Polisen", "Åklagare", "Domstol", "Kriminalvården"];
 
-    // Karaktärer
+    // Karaktärer med uppdaterade förklaringar
     const CHARACTERS = [
       {
         id: "bus_kenneth",
         name: "Bus-Kenneth",
-        bio: "Stans listigaste tjuv med keps och lykta.",
+        bio: "Stans listigaste tjuv som alltid har en kofot redo.",
         svg: `<svg viewBox="0 0 100 100" class="w-full h-full">
           <circle cx="50" cy="50" r="45" fill="#fef3c7"/>
           <path d="M20 90 L50 65 L80 90 Z" fill="#b91c1c"/>
@@ -378,7 +378,7 @@
       {
         id: "kak_maja",
         name: "Kåk-Maja",
-        bio: "Skrattande rebell i prickig snusnäsduk.",
+        bio: "Har fler turer i finkan än någon annan i gänget.",
         svg: `<svg viewBox="0 0 100 100" class="w-full h-full">
           <circle cx="50" cy="50" r="45" fill="#ffe4e6"/>
           <path d="M22 95 Q50 78 78 95 Z" fill="#e11d48"/>
@@ -399,7 +399,7 @@
       {
         id: "stok_dino",
         name: "Stök-Dino",
-        bio: "Kvarterets snabbaste kille med svart krulligt hår.",
+        bio: "Kvarterets snabbaste kille som alltid hamnar i trubbel.",
         svg: `<svg viewBox="0 0 100 100" class="w-full h-full">
           <circle cx="50" cy="50" r="45" fill="#dbeafe"/>
           <path d="M18 95 L30 68 L70 68 L82 95 Z" fill="#1d4ed8"/>
@@ -424,7 +424,7 @@
       }
     ];
 
-    // 5 Scenarier - texter utan cite-referenser
+    // 5 Scenarier
     const SCENARIOS = [
       {
         id: "korvkiosken",
@@ -451,7 +451,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "villkorlig dom", "tilltalad", "nämndeman", "husrannsakan"],
-            explanation: "Den drabbade kallas målsägande. Polisen inleder förundersökning och griper den misstänkte, som får hållas i max 12 timmar."
+            explanation: "Den drabbade kallas målsägande[cite: 2]. Polisen inleder förundersökning och griper den misstänkte, som får hållas i max 12 timmar[cite: 1, 2]."
           },
           {
             stepIndex: 2,
@@ -470,7 +470,7 @@
               { id: "gap3", answer: "i max 2 veckor" }
             ],
             distractors: ["i max 12 timmar", "böter", "grips", "släpps fri direkt", "förundersökning", "nämndeman"],
-            explanation: "Åklagaren anhåller (max 4 dygn) och begär häktning i domstol (max 2 veckor i taget vid misstanke)."
+            explanation: "Åklagaren anhåller (max 4 dygn) och begär häktning i domstol (max 2 veckor i taget vid misstanke)[cite: 1, 2]."
           },
           {
             stepIndex: 3,
@@ -488,7 +488,7 @@
               { id: "gap2", answer: "fängelse" }
             ],
             distractors: ["hovrätten", "snatteri", "målsägande", "villkorlig frigivning", "i max 12 timmar", "penningböter"],
-            explanation: "Åklagaren väcker åtal och den misstänkte kallas då tilltalad. Tingsrätten finner personen skyldig och dömer till fängelse."
+            explanation: "Åklagaren väcker åtal och den misstänkte kallas då tilltalad[cite: 1, 2]. Tingsrätten finner personen skyldig och dömer till fängelse[cite: 1, 2]."
           },
           {
             stepIndex: 4,
@@ -507,7 +507,7 @@
               { id: "gap3", answer: "rehabilitering" }
             ],
             distractors: ["tingsrätten", "i max 4 dygn", "åtalsunderlåtelse", "målsägande", "resning", "husrannsakan"],
-            explanation: "Man lämnar in en överklagan till hovrätten. När domen fastställs ansvarar Kriminalvården för avtjänat straff och rehabilitering."
+            explanation: "Man lämnar in en överklagan till hovrätten[cite: 1]. När domen fastställs ansvarar Kriminalvården för avtjänat straff och rehabilitering[cite: 1, 2]."
           }
         ]
       },
@@ -536,7 +536,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 2 veckor", "i max 4 dygn", "mord", "fängelse", "hovrätten", "häktas"],
-            explanation: "Mindre stöld kallas snatteri (ringa stöld). Polisanmälan upprättas och gripande kan ske i max 12 timmar."
+            explanation: "Mindre stöld kallas snatteri (ringa stöld). Polisanmälan upprättas och gripande kan ske i max 12 timmar[cite: 1, 2]."
           },
           {
             stepIndex: 2,
@@ -554,7 +554,7 @@
               { id: "gap2", answer: "misstänkte" }
             ],
             distractors: ["grips", "i max 4 dygn", "i max 2 veckor", "målsägande", "nämndeman", "kriminalvård"],
-            explanation: "Vid småbrott häktas man inte. Övervakningsfilm utgör bevis mot den misstänkte."
+            explanation: "Vid småbrott häktas man inte[cite: 2]. Övervakningsfilm utgör bevis mot den misstänkte[cite: 2]."
           },
           {
             stepIndex: 3,
@@ -573,7 +573,7 @@
               { id: "gap2", answer: "målsägande" }
             ],
             distractors: ["fängelse", "i max 2 veckor", "anhålls", "överklagar", "hovrätten", "i max 12 timmar"],
-            explanation: "Den anklagade kallas tilltalad och påföljden blir penningböter samt skadestånd till butiken (målsägande)."
+            explanation: "Den anklagade kallas tilltalad och påföljden blir penningböter samt skadestånd till butiken (målsägande)[cite: 2]."
           },
           {
             stepIndex: 4,
@@ -592,7 +592,7 @@
               { id: "gap2", answer: "belastningsregister" }
             ],
             distractors: ["hovrätten", "häkte", "i max 4 dygn", "förundersökning", "tilltalad", "rehabilitering"],
-            explanation: "Utan överklagan vinner beslutet kraft. Kriminalvården kopplas inte in vid rena böter, men brottet hamnar i belastningsregistret."
+            explanation: "Utan överklagan vinner beslutet kraft[cite: 1]. Kriminalvården kopplas inte in vid rena böter, men brottet hamnar i belastningsregistret[cite: 2]."
           }
         ]
       },
@@ -622,7 +622,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "tilltalad", "domare", "häktas", "åtal"],
-            explanation: "Polisen spärrar av brottsplatsen och hör vittnen. Den misstänkte grips i max 12 timmar."
+            explanation: "Polisen spärrar av brottsplatsen och hör vittnen[cite: 2]. Den misstänkte grips i max 12 timmar[cite: 1, 2]."
           },
           {
             stepIndex: 2,
@@ -641,7 +641,7 @@
               { id: "gap2", answer: "i max 2 veckor" }
             ],
             distractors: ["i max 12 timmar", "i max 4 dygn", "penningböter", "fängelse", "överklagar", "nämndeman"],
-            explanation: "Polisen kan göra husrannsakan. Åklagaren anhåller personen men häktning (max 2 veckor) beviljas inte utan starkare bevis."
+            explanation: "Polisen kan göra husrannsakan[cite: 2]. Åklagaren anhåller personen men häktning (max 2 veckor) beviljas inte utan starkare bevis[cite: 1, 2]."
           },
           {
             stepIndex: 3,
@@ -660,7 +660,7 @@
               { id: "gap2", answer: "målsägande" }
             ],
             distractors: ["åklagare", "kriminalvård", "snatteri", "tilltalad", "i max 4 dygn", "överklagan"],
-            explanation: "Försvarsadvokaten företräder den tilltalade. Nämndemän dömer tillsammans med juristdomaren om skuld gentemot målsägande."
+            explanation: "Försvarsadvokaten företräder den tilltalade[cite: 2]. Nämndemän dömer tillsammans med juristdomaren om skuld gentemot målsägande[cite: 2]."
           },
           {
             stepIndex: 4,
@@ -678,7 +678,7 @@
               { id: "gap2", answer: "Kriminalvården" }
             ],
             distractors: ["fälla", "överklagan", "i max 2 veckor", "i max 12 timmar", "anhålls", "brottsplats"],
-            explanation: "Vid brist på bevis frias den tilltalade helt. Ingen fällande dom innebär att Kriminalvården inte blir inblandad."
+            explanation: "Vid brist på bevis frias den tilltalade helt[cite: 2]. Ingen fällande dom innebär att Kriminalvården inte blir inblandad[cite: 2]."
           }
         ]
       },
@@ -707,7 +707,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "snatteri", "tilltalad", "nämndeman", "hovrätten"],
-            explanation: "Att köra bil utan behörighet är olovlig körning. Offret är målsägande och polisen griper föraren (max 12 timmar)."
+            explanation: "Att köra bil utan behörighet är olovlig körning. Offret är målsägande och polisen griper föraren (max 12 timmar)[cite: 1, 2]."
           },
           {
             stepIndex: 2,
@@ -726,7 +726,7 @@
               { id: "gap3", answer: "i max 2 veckor" }
             ],
             distractors: ["i max 12 timmar", "penningböter", "grips", "överklagar", "villkorlig frigivning", "snatteri"],
-            explanation: "Vid grova brott anhålls föraren (max 4 dygn) och häktas av rätten i max 2 veckor i taget."
+            explanation: "Vid grova brott anhålls föraren (max 4 dygn) och häktas av rätten i max 2 veckor i taget[cite: 1, 2]."
           },
           {
             stepIndex: 3,
@@ -745,7 +745,7 @@
               { id: "gap2", answer: "fängelse" }
             ],
             distractors: ["målsägande", "i max 12 timmar", "penningböter", "hovrätten", "snatteri", "anhålls"],
-            explanation: "Den åtalade kallas tilltalad. Bevis från brottsplatsen leder till fällande dom och fängelse."
+            explanation: "Den åtalade kallas tilltalad[cite: 2]. Bevis från brottsplatsen leder till fällande dom och fängelse[cite: 1, 2]."
           },
           {
             stepIndex: 4,
@@ -763,7 +763,7 @@
               { id: "gap2", answer: "rehabilitering" }
             ],
             distractors: ["hovrätten", "i max 4 dygn", "i max 2 veckor", "nämndeman", "förundersökning", "målsägande"],
-            explanation: "När domen inte överklagas tar Kriminalvården hand om anstaltsvistelsen och rehabiliteringsprogrammen."
+            explanation: "När domen inte överklagas tar Kriminalvården hand om anstaltsvistelsen och rehabiliteringsprogrammen[cite: 1, 2]."
           }
         ]
       },
@@ -791,7 +791,7 @@
               { id: "gap2", answer: "straffmyndig" }
             ],
             distractors: ["snatteri", "olovlig körning", "målsägande", "i max 2 veckor", "i max 12 timmar", "häktas"],
-            explanation: "Klotter bedöms som skadegörelse. Polisen inleder förundersökning och vid 15 år är man straffmyndig."
+            explanation: "Klotter bedöms som skadegörelse. Polisen inleder förundersökning och vid 15 år är man straffmyndig[cite: 2]."
           },
           {
             stepIndex: 2,
@@ -810,7 +810,7 @@
               { id: "gap2", answer: "åtal" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "fängelse", "hovrätten", "överklagar", "nämndeman"],
-            explanation: "Misstänkta kan hållas i max 12 timmar vid förhör. Husrannsakan säkrar bevis och åklagaren väcker åtal."
+            explanation: "Misstänkta kan hållas i max 12 timmar vid förhör[cite: 1]. Husrannsakan säkrar bevis och åklagaren väcker åtal[cite: 1, 2]."
           },
           {
             stepIndex: 3,
@@ -829,7 +829,7 @@
               { id: "gap2", answer: "tilltalad" }
             ],
             distractors: ["åklagare", "häktas", "rehabilitering", "i max 4 dygn", "överklagan", "hovrätten"],
-            explanation: "Nämndemän dömer ihop med ordföranden. Skolans ägare är målsägande och ungdomen kallas tilltalad."
+            explanation: "Nämndemän dömer ihop med ordföranden[cite: 2]. Skolans ägare är målsägande och ungdomen kallas tilltalad[cite: 2]."
           },
           {
             stepIndex: 4,
@@ -847,7 +847,7 @@
               { id: "gap2", answer: "överklagan" }
             ],
             distractors: ["fängelse", "i max 2 veckor", "i max 12 timmar", "anhålls", "brottsplats", "grips"],
-            explanation: "Ungdomar döms ofta till dagsböter och samhällstjänst istället för anstalt. Domen avslutas utan överklagan."
+            explanation: "Ungdomar döms ofta till dagsböter och samhällstjänst istället för anstalt[cite: 2]. Domen avslutas utan överklagan[cite: 1]."
           }
         ]
       }
@@ -872,7 +872,6 @@
       { term: "Penningböter / Dagsböter", desc: "Ett ekonomiskt straff. Penningböter är ett fast belopp medan dagsböter beror på personens inkomst." }
     ];
 
-    // Ladda sparade uppdrag från localStorage
     function loadSavedCompletedScenarios() {
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -1268,7 +1267,7 @@
       }
     }
 
-    // Slumpvis ordning vid varje runda och steg
+    // Begreppsbank med 2 spalter och slumpad ordning per steg
     function renderWordBank(step) {
       const bankContainer = document.getElementById("wordBankContainer");
       bankContainer.innerHTML = "";
@@ -1279,7 +1278,7 @@
       allWords.forEach(word => {
         const isUsed = Object.values(state.slotAnswers).includes(word);
         const btn = document.createElement("button");
-        btn.className = `w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-comic font-bold border-2 transition touch-target ${
+        btn.className = `w-full text-center px-2 py-2.5 rounded-xl text-xs sm:text-sm font-comic font-bold border-2 transition touch-target flex items-center justify-center ${
           isUsed 
             ? "bg-comicCardDark/40 text-stone-400 border-comicBorder/20 cursor-not-allowed opacity-60" 
             : "bg-comicCard text-comicText border-comicBorder hover:border-funOrange hover:bg-comicCardDark shadow-sm active:scale-95"
@@ -1405,6 +1404,7 @@
       playBeep('success');
     }
 
+    // Återgång till startsidan med fullständig nollställning av rättskedja, vald karaktär och scenario
     function returnToStartScreen() {
       document.getElementById("gameScreen").classList.add("hidden");
       document.getElementById("resultScreen").classList.add("hidden");
@@ -1414,7 +1414,15 @@
 
       document.getElementById("headerSubtitle").textContent = "Interaktiv övning i Rättskedjan";
 
+      // Nollställ rättskedjan, karaktär och brottsplats inför varje ny runda
+      initChainExercise();
+      state.selectedChar = null;
+      state.selectedScenarioId = null;
+      document.getElementById("chosenCharacterLabel").textContent = "Ingen vald än";
+      document.getElementById("chosenScenarioLabel").textContent = "Inget valt än";
+
       updateCompletedDisplay();
+      renderCharacters();
       renderScenarios();
       updateStartButtonState();
       checkAllCompletePopup();
@@ -1474,7 +1482,6 @@
       });
       document.getElementById("finishScenarioBtn").addEventListener("click", returnToStartScreen);
 
-      // Rensa framgångar från både state och localStorage
       document.getElementById("clearProgressBtn").addEventListener("click", () => {
         if (confirm("Vill du nollställa alla avklarade uppdrag?")) {
           playBeep('click');
