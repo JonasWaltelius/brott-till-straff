@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Från brott till straff - Följ Rättskedjan</title>
+  <title>Från Brott till Straff</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
+            bangers: ['Bangers', 'cursive'],
             comic: ['Fredoka', 'sans-serif'],
             sans: ['Nunito', 'sans-serif'],
           },
@@ -50,18 +51,40 @@
       border-color: #D95D1E;
       background-color: #F8D8BF;
     }
+    /* Comic book gradient & 3D text styling */
+    .comic-title {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.05em;
+      background: linear-gradient(180deg, #FFE853 0%, #FF8A00 50%, #E52E06 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 0px #000000) drop-shadow(3px 3px 0px #78350f);
+      -webkit-text-stroke: 1.5px #000000;
+    }
+    /* Serietidningssiffror 1, 2, 3 inspirerade av bilden */
+    .comic-badge-number {
+      font-family: 'Bangers', cursive;
+      font-style: italic;
+      color: #FF8A00;
+      -webkit-text-stroke: 1.5px #000000;
+      text-shadow: 2px 2px 0px #000000;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transform: skewX(-6deg);
+    }
   </style>
 </head>
 <body class="bg-comicBg text-comicText antialiased min-h-screen flex flex-col font-sans select-none">
 
   <!-- Header -->
   <header class="bg-funDark text-white shadow-md sticky top-0 z-40 border-b-4 border-funOrange">
-    <div class="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <span class="text-2xl">⚖️</span>
+    <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl filter drop-shadow">⚖️</span>
         <div>
-          <h1 class="font-comic font-bold text-base sm:text-xl leading-tight tracking-wide text-amber-200">FRÅN BROTT TILL STRAFF</h1>
-          <p id="headerSubtitle" class="text-xs text-amber-100 font-medium">Interaktiv övning i Rättskedjan</p>
+          <h1 class="comic-title text-2xl sm:text-3xl leading-none">Från Brott till Straff</h1>
         </div>
       </div>
       <div class="flex items-center space-x-2">
@@ -92,7 +115,7 @@
         <div class="flex items-center justify-between mb-2">
           <div>
             <h2 class="text-base sm:text-lg font-comic font-bold text-comicText flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-funOrange text-white text-xs flex items-center justify-center font-bold">1</span> Sortera Rättskedjan i rätt ordning
+              <span class="comic-badge-number text-2xl sm:text-3xl w-7 h-7">1.</span> Sortera Rättskedjan i rätt ordning
             </h2>
             <p class="text-xs sm:text-sm text-stone-700">Klicka på begreppen nedan för att placera dem i rätt kronologisk ordning.</p>
           </div>
@@ -128,7 +151,7 @@
       <section class="bg-comicCard rounded-2xl shadow-sm border-2 border-comicBorder p-4 sm:p-5">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base sm:text-lg font-comic font-bold text-comicText flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-funOrange text-white text-xs flex items-center justify-center font-bold">2</span> Välj misstänkt person
+            <span class="comic-badge-number text-2xl sm:text-3xl w-7 h-7">2.</span> Välj misstänkt person
           </h2>
           <span id="chosenCharacterLabel" class="text-xs font-comic font-bold text-funOrange bg-comicCardDark px-2.5 py-1 rounded-lg border border-comicBorder">
             Ingen vald än
@@ -143,7 +166,7 @@
       <section class="bg-comicCard rounded-2xl shadow-sm border-2 border-comicBorder p-4 sm:p-5">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base sm:text-lg font-comic font-bold text-comicText flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-funOrange text-white text-xs flex items-center justify-center font-bold">3</span> Välj händelseförlopp (Scenario)
+            <span class="comic-badge-number text-2xl sm:text-3xl w-7 h-7">3.</span> Välj händelseförlopp (Scenario)
           </h2>
           <span id="chosenScenarioLabel" class="text-xs font-comic font-bold text-comicText bg-comicCardDark px-2.5 py-1 rounded-lg border border-comicBorder">
             Inget valt än
@@ -196,7 +219,7 @@
         </div>
       </div>
 
-      <!-- Spelyta uppdelad i 2 kolumner: Vänster = Berättelse, Höger = Begreppsbank -->
+      <!-- Spelyta uppdelad i 2 kolumner -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
         
         <!-- Vänsterkolumn: Scenkort & Berättelse -->
@@ -214,7 +237,7 @@
               </div>
             </div>
 
-            <!-- Lucktext Container (Radbrutna meningar) -->
+            <!-- Lucktext Container -->
             <div class="bg-comicCardDark/70 border-2 border-comicBorder/40 rounded-xl p-3.5 sm:p-4 text-sm sm:text-base leading-relaxed text-comicText space-y-3" id="storyTextContainer"></div>
 
             <!-- Feedback för steget -->
@@ -246,7 +269,7 @@
           </div>
           <p class="text-[11px] text-stone-600 mb-2 italic">Klicka på ett begrepp för att placera det i den markerade rutan:</p>
 
-          <!-- Två spalter i samma ruta för att slippa scrolla neråt -->
+          <!-- Två spalter i samma ruta -->
           <div id="wordBankContainer" class="grid grid-cols-2 gap-2"></div>
         </div>
 
@@ -314,7 +337,13 @@
     const STORAGE_KEY = "brott_till_straff_completed_scenarios";
     const CORRECT_CHAIN = ["Brottet", "Polisen", "Åklagare", "Domstol", "Kriminalvården"];
 
-    // Karaktärer med uppdaterade förklaringar
+    // Hjälpfunktion för att tvätta bort alla eventuella referenstaggar
+    function cleanText(text) {
+      if (!text) return "";
+      return text.replace(/\[cite:[^\]]*\]/gi, "").replace(/\[cite\s*\d+\]/gi, "").trim();
+    }
+
+    // Karaktärer
     const CHARACTERS = [
       {
         id: "bus_kenneth",
@@ -451,7 +480,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "villkorlig dom", "tilltalad", "nämndeman", "husrannsakan"],
-            explanation: "Den drabbade kallas målsägande[cite: 2]. Polisen inleder förundersökning och griper den misstänkte, som får hållas i max 12 timmar[cite: 1, 2]."
+            explanation: "Den drabbade kallas målsägande. Polisen inleder förundersökning och griper den misstänkte, som får hållas i max 12 timmar."
           },
           {
             stepIndex: 2,
@@ -470,7 +499,7 @@
               { id: "gap3", answer: "i max 2 veckor" }
             ],
             distractors: ["i max 12 timmar", "böter", "grips", "släpps fri direkt", "förundersökning", "nämndeman"],
-            explanation: "Åklagaren anhåller (max 4 dygn) och begär häktning i domstol (max 2 veckor i taget vid misstanke)[cite: 1, 2]."
+            explanation: "Åklagaren anhåller (max 4 dygn) och begär häktning i domstol (max 2 veckor i taget vid misstanke)."
           },
           {
             stepIndex: 3,
@@ -488,7 +517,7 @@
               { id: "gap2", answer: "fängelse" }
             ],
             distractors: ["hovrätten", "snatteri", "målsägande", "villkorlig frigivning", "i max 12 timmar", "penningböter"],
-            explanation: "Åklagaren väcker åtal och den misstänkte kallas då tilltalad[cite: 1, 2]. Tingsrätten finner personen skyldig och dömer till fängelse[cite: 1, 2]."
+            explanation: "Åklagaren väcker åtal och den misstänkte kallas då tilltalad. Tingsrätten finner personen skyldig och dömer till fängelse."
           },
           {
             stepIndex: 4,
@@ -507,7 +536,7 @@
               { id: "gap3", answer: "rehabilitering" }
             ],
             distractors: ["tingsrätten", "i max 4 dygn", "åtalsunderlåtelse", "målsägande", "resning", "husrannsakan"],
-            explanation: "Man lämnar in en överklagan till hovrätten[cite: 1]. När domen fastställs ansvarar Kriminalvården för avtjänat straff och rehabilitering[cite: 1, 2]."
+            explanation: "Man lämnar in en överklagan till hovrätten. När domen fastställs ansvarar Kriminalvården för avtjänat straff och rehabilitering."
           }
         ]
       },
@@ -536,7 +565,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 2 veckor", "i max 4 dygn", "mord", "fängelse", "hovrätten", "häktas"],
-            explanation: "Mindre stöld kallas snatteri (ringa stöld). Polisanmälan upprättas och gripande kan ske i max 12 timmar[cite: 1, 2]."
+            explanation: "Mindre stöld kallas snatteri (ringa stöld). Polisanmälan upprättas och gripande kan ske i max 12 timmar."
           },
           {
             stepIndex: 2,
@@ -554,7 +583,7 @@
               { id: "gap2", answer: "misstänkte" }
             ],
             distractors: ["grips", "i max 4 dygn", "i max 2 veckor", "målsägande", "nämndeman", "kriminalvård"],
-            explanation: "Vid småbrott häktas man inte[cite: 2]. Övervakningsfilm utgör bevis mot den misstänkte[cite: 2]."
+            explanation: "Vid småbrott häktas man inte. Övervakningsfilm utgör bevis mot den misstänkte."
           },
           {
             stepIndex: 3,
@@ -573,7 +602,7 @@
               { id: "gap2", answer: "målsägande" }
             ],
             distractors: ["fängelse", "i max 2 veckor", "anhålls", "överklagar", "hovrätten", "i max 12 timmar"],
-            explanation: "Den anklagade kallas tilltalad och påföljden blir penningböter samt skadestånd till butiken (målsägande)[cite: 2]."
+            explanation: "Den anklagade kallas tilltalad och påföljden blir penningböter samt skadestånd till butiken (målsägande)."
           },
           {
             stepIndex: 4,
@@ -592,7 +621,7 @@
               { id: "gap2", answer: "belastningsregister" }
             ],
             distractors: ["hovrätten", "häkte", "i max 4 dygn", "förundersökning", "tilltalad", "rehabilitering"],
-            explanation: "Utan överklagan vinner beslutet kraft[cite: 1]. Kriminalvården kopplas inte in vid rena böter, men brottet hamnar i belastningsregistret[cite: 2]."
+            explanation: "Utan överklagan vinner beslutet kraft. Kriminalvården kopplas inte in vid rena böter, men brottet hamnar i belastningsregistret."
           }
         ]
       },
@@ -622,7 +651,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "tilltalad", "domare", "häktas", "åtal"],
-            explanation: "Polisen spärrar av brottsplatsen och hör vittnen[cite: 2]. Den misstänkte grips i max 12 timmar[cite: 1, 2]."
+            explanation: "Polisen spärrar av brottsplatsen och hör vittnen. Den misstänkte grips i max 12 timmar."
           },
           {
             stepIndex: 2,
@@ -641,7 +670,7 @@
               { id: "gap2", answer: "i max 2 veckor" }
             ],
             distractors: ["i max 12 timmar", "i max 4 dygn", "penningböter", "fängelse", "överklagar", "nämndeman"],
-            explanation: "Polisen kan göra husrannsakan[cite: 2]. Åklagaren anhåller personen men häktning (max 2 veckor) beviljas inte utan starkare bevis[cite: 1, 2]."
+            explanation: "Polisen kan göra husrannsakan. Åklagaren anhåller personen men häktning (max 2 veckor) beviljas inte utan starkare bevis."
           },
           {
             stepIndex: 3,
@@ -660,7 +689,7 @@
               { id: "gap2", answer: "målsägande" }
             ],
             distractors: ["åklagare", "kriminalvård", "snatteri", "tilltalad", "i max 4 dygn", "överklagan"],
-            explanation: "Försvarsadvokaten företräder den tilltalade[cite: 2]. Nämndemän dömer tillsammans med juristdomaren om skuld gentemot målsägande[cite: 2]."
+            explanation: "Försvarsadvokaten företräder den tilltalade. Nämndemän dömer tillsammans med juristdomaren om skuld gentemot målsägande."
           },
           {
             stepIndex: 4,
@@ -678,7 +707,7 @@
               { id: "gap2", answer: "Kriminalvården" }
             ],
             distractors: ["fälla", "överklagan", "i max 2 veckor", "i max 12 timmar", "anhålls", "brottsplats"],
-            explanation: "Vid brist på bevis frias den tilltalade helt[cite: 2]. Ingen fällande dom innebär att Kriminalvården inte blir inblandad[cite: 2]."
+            explanation: "Vid brist på bevis frias den tilltalade helt. Ingen fällande dom innebär att Kriminalvården inte blir inblandad."
           }
         ]
       },
@@ -707,7 +736,7 @@
               { id: "gap3", answer: "i max 12 timmar" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "snatteri", "tilltalad", "nämndeman", "hovrätten"],
-            explanation: "Att köra bil utan behörighet är olovlig körning. Offret är målsägande och polisen griper föraren (max 12 timmar)[cite: 1, 2]."
+            explanation: "Att köra bil utan behörighet är olovlig körning. Offret är målsägande och polisen griper föraren (max 12 timmar)."
           },
           {
             stepIndex: 2,
@@ -726,7 +755,7 @@
               { id: "gap3", answer: "i max 2 veckor" }
             ],
             distractors: ["i max 12 timmar", "penningböter", "grips", "överklagar", "villkorlig frigivning", "snatteri"],
-            explanation: "Vid grova brott anhålls föraren (max 4 dygn) och häktas av rätten i max 2 veckor i taget[cite: 1, 2]."
+            explanation: "Vid grova brott anhålls föraren (max 4 dygn) och häktas av rätten i max 2 veckor i taget."
           },
           {
             stepIndex: 3,
@@ -745,7 +774,7 @@
               { id: "gap2", answer: "fängelse" }
             ],
             distractors: ["målsägande", "i max 12 timmar", "penningböter", "hovrätten", "snatteri", "anhålls"],
-            explanation: "Den åtalade kallas tilltalad[cite: 2]. Bevis från brottsplatsen leder till fällande dom och fängelse[cite: 1, 2]."
+            explanation: "Den åtalade kallas tilltalad. Bevis från brottsplatsen leder till fällande dom och fängelse."
           },
           {
             stepIndex: 4,
@@ -763,7 +792,7 @@
               { id: "gap2", answer: "rehabilitering" }
             ],
             distractors: ["hovrätten", "i max 4 dygn", "i max 2 veckor", "nämndeman", "förundersökning", "målsägande"],
-            explanation: "När domen inte överklagas tar Kriminalvården hand om anstaltsvistelsen och rehabiliteringsprogrammen[cite: 1, 2]."
+            explanation: "När domen inte överklagas tar Kriminalvården hand om anstaltsvistelsen och rehabiliteringsprogrammen."
           }
         ]
       },
@@ -791,7 +820,7 @@
               { id: "gap2", answer: "straffmyndig" }
             ],
             distractors: ["snatteri", "olovlig körning", "målsägande", "i max 2 veckor", "i max 12 timmar", "häktas"],
-            explanation: "Klotter bedöms som skadegörelse. Polisen inleder förundersökning och vid 15 år är man straffmyndig[cite: 2]."
+            explanation: "Klotter bedöms som skadegörelse. Polisen inleder förundersökning och vid 15 år är man straffmyndig."
           },
           {
             stepIndex: 2,
@@ -810,7 +839,7 @@
               { id: "gap2", answer: "åtal" }
             ],
             distractors: ["i max 4 dygn", "i max 2 veckor", "fängelse", "hovrätten", "överklagar", "nämndeman"],
-            explanation: "Misstänkta kan hållas i max 12 timmar vid förhör[cite: 1]. Husrannsakan säkrar bevis och åklagaren väcker åtal[cite: 1, 2]."
+            explanation: "Misstänkta kan hållas i max 12 timmar vid förhör. Husrannsakan säkrar bevis och åklagaren väcker åtal."
           },
           {
             stepIndex: 3,
@@ -829,7 +858,7 @@
               { id: "gap2", answer: "tilltalad" }
             ],
             distractors: ["åklagare", "häktas", "rehabilitering", "i max 4 dygn", "överklagan", "hovrätten"],
-            explanation: "Nämndemän dömer ihop med ordföranden[cite: 2]. Skolans ägare är målsägande och ungdomen kallas tilltalad[cite: 2]."
+            explanation: "Nämndemän dömer ihop med ordföranden. Skolans ägare är målsägande och ungdomen kallas tilltalad."
           },
           {
             stepIndex: 4,
@@ -847,7 +876,7 @@
               { id: "gap2", answer: "överklagan" }
             ],
             distractors: ["fängelse", "i max 2 veckor", "i max 12 timmar", "anhålls", "brottsplats", "grips"],
-            explanation: "Ungdomar döms ofta till dagsböter och samhällstjänst istället för anstalt[cite: 2]. Domen avslutas utan överklagan[cite: 1]."
+            explanation: "Ungdomar döms ofta till dagsböter och samhällstjänst istället för anstalt. Domen avslutas utan överklagan."
           }
         ]
       }
@@ -956,7 +985,7 @@
             ? "bg-comicCardDark/40 text-stone-400 border-comicBorder/30 cursor-not-allowed" 
             : "bg-comicCard text-comicText border-comicBorder hover:border-funOrange hover:bg-comicCardDark shadow-sm"
         }`;
-        btn.textContent = part;
+        btn.textContent = cleanText(part);
         btn.disabled = isUsed;
         btn.addEventListener("click", () => {
           playBeep('click');
@@ -981,7 +1010,7 @@
           slot.className = "chain-slot border-2 border-funOrange bg-comicCardDark rounded-xl p-2 text-center min-h-[64px] flex flex-col justify-center items-center cursor-pointer shadow-sm";
           const span = document.createElement("span");
           span.className = "text-xs font-comic font-bold text-comicText";
-          span.textContent = val;
+          span.textContent = cleanText(val);
           const removeHint = document.createElement("span");
           removeHint.className = "text-[10px] text-funOrange mt-0.5 font-bold";
           removeHint.textContent = "Klicka för att ångra";
@@ -1046,7 +1075,7 @@
             ${char.svg}
           </div>
           <div class="font-comic font-bold text-xs sm:text-sm text-comicText leading-tight mb-1">${char.name}</div>
-          <p class="text-[11px] text-stone-700 leading-snug line-clamp-2">${char.bio}</p>
+          <p class="text-[11px] text-stone-700 leading-snug line-clamp-2">${cleanText(char.bio)}</p>
         `;
 
         card.addEventListener("click", () => {
@@ -1158,7 +1187,6 @@
       document.getElementById("gameCharName").textContent = state.selectedChar.name;
       document.getElementById("gameCharAvatar").innerHTML = state.selectedChar.svg;
       document.getElementById("gameScenarioTitle").textContent = `${scen.line1} ${scen.line2}`;
-      document.getElementById("headerSubtitle").textContent = `Fall: ${scen.line1} ${scen.line2} med ${state.selectedChar.name}`;
 
       loadStep(0);
     }
@@ -1178,9 +1206,9 @@
       document.getElementById("progressBarFill").style.width = `${progressPercent}%`;
 
       document.getElementById("gameStepBadge").textContent = `Steg ${stepIdx + 1} av ${scen.steps.length}`;
-      document.getElementById("gameStepChainName").textContent = step.chainPhase;
-      document.getElementById("sceneStepHeading").textContent = step.title;
-      document.getElementById("sceneStepDescription").textContent = step.description;
+      document.getElementById("gameStepChainName").textContent = cleanText(step.chainPhase);
+      document.getElementById("sceneStepHeading").textContent = cleanText(step.title);
+      document.getElementById("sceneStepDescription").textContent = cleanText(step.description);
       document.getElementById("sceneIconContainer").textContent = step.icon;
 
       renderStoryText(step);
@@ -1194,7 +1222,7 @@
       container.innerHTML = "";
 
       step.sentences.forEach(sentence => {
-        let sentenceHtml = sentence;
+        let sentenceHtml = cleanText(sentence);
         step.slots.forEach(slot => {
           if (sentence.includes(`[${slot.id}]`)) {
             const val = state.slotAnswers[slot.id];
@@ -1212,7 +1240,7 @@
                       : "border-dashed border-stone-400 bg-comicCard text-stone-500 hover:border-funOrange"
                 }"
               >
-                ${val ? `${val} <span class="text-[11px] text-rose-700 ml-1.5 font-bold">✕</span>` : `[ Klicka här ]`}
+                ${val ? `${cleanText(val)} <span class="text-[11px] text-rose-700 ml-1.5 font-bold">✕</span>` : `[ Klicka här ]`}
               </span>
             `;
             sentenceHtml = sentenceHtml.replace(`[${slot.id}]`, slotHtml);
@@ -1267,7 +1295,7 @@
       }
     }
 
-    // Begreppsbank med 2 spalter och slumpad ordning per steg
+    // Begreppsbank med 2 spalter och slumpad ordning per runda
     function renderWordBank(step) {
       const bankContainer = document.getElementById("wordBankContainer");
       bankContainer.innerHTML = "";
@@ -1283,7 +1311,7 @@
             ? "bg-comicCardDark/40 text-stone-400 border-comicBorder/20 cursor-not-allowed opacity-60" 
             : "bg-comicCard text-comicText border-comicBorder hover:border-funOrange hover:bg-comicCardDark shadow-sm active:scale-95"
         }`;
-        btn.textContent = word;
+        btn.textContent = cleanText(word);
         btn.disabled = isUsed;
 
         btn.addEventListener("click", () => {
@@ -1337,7 +1365,7 @@
         feedbackEl.className = "mt-3 p-3 rounded-xl text-xs sm:text-sm font-comic bg-emerald-100 text-emerald-950 border-2 border-emerald-400";
         feedbackEl.innerHTML = `
           <div class="font-bold mb-1">✅ Helt rätt!</div>
-          <div class="font-sans font-semibold">${step.explanation}</div>
+          <div class="font-sans font-semibold">${cleanText(step.explanation)}</div>
         `;
         document.getElementById("verifyStepBtn").classList.add("hidden");
         document.getElementById("nextStepBtn").classList.remove("hidden");
@@ -1393,7 +1421,7 @@
         resultOutcome = `För skadegörelsen på Nya Munken dömdes ${state.selectedChar.name} till dagsböter samt samhällstjänst istället för fängelse.`;
       }
 
-      textEl.textContent = resultOutcome;
+      textEl.textContent = cleanText(resultOutcome);
 
       summaryEl.innerHTML = `
         <div><strong>👤 Inblandad:</strong> ${state.selectedChar.name}</div>
@@ -1404,7 +1432,7 @@
       playBeep('success');
     }
 
-    // Återgång till startsidan med fullständig nollställning av rättskedja, vald karaktär och scenario
+    // Återgång till startsidan med fullständig nollställning
     function returnToStartScreen() {
       document.getElementById("gameScreen").classList.add("hidden");
       document.getElementById("resultScreen").classList.add("hidden");
@@ -1412,9 +1440,6 @@
       document.getElementById("homeBtn").classList.add("hidden");
       document.getElementById("gameProgressBar").classList.add("hidden");
 
-      document.getElementById("headerSubtitle").textContent = "Interaktiv övning i Rättskedjan";
-
-      // Nollställ rättskedjan, karaktär och brottsplats inför varje ny runda
       initChainExercise();
       state.selectedChar = null;
       state.selectedScenarioId = null;
@@ -1437,8 +1462,8 @@
         const div = document.createElement("div");
         div.className = "p-2.5 rounded-xl bg-comicCardDark/70 border-2 border-comicBorder/40";
         div.innerHTML = `
-          <div class="font-comic font-bold text-funOrange mb-0.5">${item.term}</div>
-          <div class="text-stone-800 text-xs leading-relaxed font-sans font-semibold">${item.desc}</div>
+          <div class="font-comic font-bold text-funOrange mb-0.5">${cleanText(item.term)}</div>
+          <div class="text-stone-800 text-xs leading-relaxed font-sans font-semibold">${cleanText(item.desc)}</div>
         `;
         container.appendChild(div);
       });
